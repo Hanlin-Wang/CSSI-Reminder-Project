@@ -1,9 +1,13 @@
 import webapp2 # NOTE: pull in a library for using appengine
 import jinja2
 import os
-# from google.appengine.api import
+from Models import ReminderData
+
+from google.appengine.api import urlfetch
 import json
-# from Models import ReminderData
+
+
+
 the_jinja_env=jinja2.Environment(
 loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
 extensions=['jinja2.ext.autoescape'],
@@ -24,8 +28,7 @@ class MainHandler(webapp2.RequestHandler):
 
 
 class DataStore(webapp2.RequestHandler):
-    def get(self):
-        def post(self):
+    def post(self):
             optionwater = request.form.get('Water')
             if optionwater:
                 optionwater=True
@@ -36,6 +39,14 @@ class DataStore(webapp2.RequestHandler):
             if name3:
                 optionsleep=True
             self.response.write(optionshave,optionsleep,optionwater)
+            store_variables = ReminderData(optionwater= optionwater, optionshave= optionshave , optionsleep= optionsleep)
+            store_variables.put()
+            variable_dict =  {
+                "optionwater": optionwater,
+                "optionshave": optionshave,
+                "optionsleep": optionsleep
+                            }
+            self.response.write(Home_template.render(variable_dict))
 
 app=webapp2.WSGIApplication([
 ('/',UsernameHandler),
