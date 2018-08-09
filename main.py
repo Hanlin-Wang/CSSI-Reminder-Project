@@ -18,39 +18,48 @@ class UsernameHandler(webapp2.RequestHandler):
         Username_template=the_jinja_env.get_template('templates/Username.html')
         self.response.write(Username_template.render())
 
-
-class MainHandler(webapp2.RequestHandler):
+class RemindHandler(webapp2.RequestHandler):
     def get(self):
         self.response.write('This is the home page')
     def post(self):
         Home_template=the_jinja_env.get_template('templates/Home.html')
+        optionwater = self.request.get('WaterCheckBox')
+
+        if optionwater:
+            optionwater=True
+            optionshave = request.form.get('Shave')
+        if optionshave:
+            optionshave=True
+            optionsleep = request.form.get('Sleep')
+        if optionsleep:
+            optionsleep=True
+
         self.response.write(Home_template.render())
 
 
-class DataStore(webapp2.RequestHandler):
-    def post(self):
-            optionwater = request.form.get('Water')
-            if optionwater:
-                optionwater=True
-            optionshave = request.form.get('Shave')
-            if optionshave:
-                optionshave=True
-            optionsleep = request.form.get('Sleep')
-            if name3:
-                optionsleep=True
-            self.response.write(optionshave,optionsleep,optionwater)
-            store_variables = ReminderData(optionwater= optionwater, optionshave= optionshave , optionsleep= optionsleep)
-            store_variables.put()
-            variable_dict =  {
-                "optionwater": optionwater,
-                "optionshave": optionshave,
-                "optionsleep": optionsleep
-                            }
-            self.response.write(Home_template.render(variable_dict))
+# class DataStore(webapp2.RequestHandler):
+
+        # if optionwater:
+        #     optionwater=True
+        # optionshave = request.form.get('Shave')
+        # if optionshave:
+        #     optionshave=True
+        # optionsleep = request.form.get('Sleep')
+        # if optionsleep:
+        #     optionsleep=True
+        # self.response.write(optionshave,optionsleep,optionwater)
+        # store_variables = ReminderData(optionwater= optionwater, optionshave= optionshave , optionsleep= optionsleep)
+        # store_variables.put()
+        # variable_dict =  {
+        #     "optionwater": optionwater,
+        #     "optionshave": optionshave,
+        #     "optionsleep": optionsleep
+        #                 }
+        # self.response.write(Home_template.render(variable_dict))
 
 app=webapp2.WSGIApplication([
 ('/',UsernameHandler),
-('/Main',MainHandler),
-('/Data',DataStore)
+('/main', RemindHandler)
+
 
 ],debug=True)
