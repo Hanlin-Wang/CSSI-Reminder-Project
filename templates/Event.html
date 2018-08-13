@@ -8,18 +8,25 @@
 
     <button onclick="setTimeout(myFunction, 3000);">Run</button>
     <p id="demo"></p>
-
-
     <script>
-    function myFunction() {
-        alert('Hello');
-    }
+      var foo={{data}};
+      console.log(foo);
+      console.log("ugh this sucks");
 
-    var myVar = setInterval(myTimer, 1000);
-    function myTimer() {
-        var d = new Date();
-        document.getElementById("demo").innerHTML = d.toLocaleTimeString();
-    }
+    </script>
+
+
+
+    <script type="text/javascript">
+      function myFunction() {
+          alert('Time to drink water');
+      }
+
+      var myVar = setInterval(myTimer, 1000);
+      function myTimer() {
+          var d = new Date();
+          document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+      }
     </script>
 
   </body>

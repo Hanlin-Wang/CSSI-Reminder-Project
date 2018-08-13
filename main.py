@@ -29,7 +29,8 @@ class RemindHandler(webapp2.RequestHandler):
 class DataStore(webapp2.RequestHandler):
     def get(self):
         Event_template=the_jinja_env.get_template('templates/Event.html')
-        self.response.write(Event_template.render())
+        all_data = ReminderData.query().fetch()
+
 
 
     def post(self):
@@ -73,8 +74,11 @@ class DataStore(webapp2.RequestHandler):
         shavetime=shavetime,
         sleeptime=sleeptime)
         username.put()
+        all_data = ReminderData.query().fetch()
+        var_dict = {'data': all_data}
+
         Event_template=the_jinja_env.get_template('templates/Event.html')
-        self.response.write(Event_template.render())
+        self.response.write(Event_template.render(var_dict))
 
 
 
