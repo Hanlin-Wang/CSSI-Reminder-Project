@@ -6,7 +6,7 @@
     <h1></h1>
     <img src="https://cdn.pixabay.com/photo/2014/03/05/07/54/reminder-279903_960_720.png" height="260" width="180">
     <p>This a app to help you manage your schedule</p>
-    <form>
+    <form action="/Data" method=POST>
       <ol>
       <li name="Water"><input type="checkbox" name="WaterCheckBox" value="Water">Water
       <select name="WaterTime">
@@ -21,13 +21,13 @@
       <option value="Three times a week">Three times a week</option>
       </select>
         <br>
-      <li name="Sleep"><input type="checkbox" name="group3" value="Sleep">Sleep
+      <li name="Sleep"><input type="checkbox" name="SleepCheckBox" value="Sleep">Sleep
         <select name="SleepTime">
       <option value="Once a day">Once a day</option>
       <option value="Twice a day">Twice a day</option>
       </select>
         <br>
-      <li name="Shower"><input type="checkbox" name="group4" value="Shower" >Shower
+      <li name="Shower"><input type="checkbox" name="ShowerCheckBox" value="Shower" >Shower
         <select name="ShowerTime">
         <option value="Once a day">Once a day</option>
         <option value="Twice a day">Twice a day</option>
@@ -35,7 +35,7 @@
         <option value="Twice a week">Twice a week</option>
         </select>
         <br>
-      <li name="Gym"><input type="checkbox" name="group6" value="Gym" >GYM
+      <li name="Gym"><input type="checkbox" name="GymCheckBox" value="Gym" >GYM
         <select name="GymTime">
         <option value="Once a day">Once a day</option>
         <option value="Twice a day">Twice a day</option>
@@ -52,13 +52,7 @@
       <input type="submit" value="Submit">
         <br>
 
-      <!-- Other: <input type="text" name="Other option" value="Type it down">
-      <select name="Time">
-     <option value="Once a day">Once a day</option>
-     <option value="Twice a day">Twice a day</option>
-     <option value="Three times a day">Three times a day</option>
-    </select>
-      <br> -->
+
       </ol>
 
 
