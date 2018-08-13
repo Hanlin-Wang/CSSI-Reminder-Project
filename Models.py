@@ -4,3 +4,6 @@ class ReminderData(ndb.Model):
     optionwater = ndb.BooleanProperty(required=False)
     optionshave = ndb.BooleanProperty(required=False)
     optionsleep = ndb.BooleanProperty(required=False)
+    watertime = ndb.BooleanProperty(required=False)
+    shavetime = ndb.BooleanProperty(required=False)
+    sleeptime = ndb.BooleanProperty(required=False)

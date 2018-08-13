@@ -57,6 +57,7 @@ class DataStore(webapp2.RequestHandler):
         variable_dict =  {
             "optionwater": optionwater,
             "optionshave": optionshave,
+<<<<<<< HEAD
             "optionsleep": optionsleep
                         }
         username = ReminderData(
@@ -64,7 +65,19 @@ class DataStore(webapp2.RequestHandler):
         optionshave=optionshave,
         optionsleep=optionsleep
         )
+=======
+            "optionsleep": optionsleep,
+            "watertime": watertime,
+            "shavetime": shavetime,
+            "sleeptime": sleeptime
+            }
+
+        username = ReminderData(optionwater= optionwater,optionshave=optionshave,optionsleep=optionsleep,watertime= watertime,shavetime=shavetime,sleeptime=sleeptime)
+>>>>>>> f4078b8ca83ef7266f4e5240a77f2354fd0b1459
         username.put()
+
+
+
 
 
 app=webapp2.WSGIApplication([
