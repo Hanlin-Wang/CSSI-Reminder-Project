@@ -40,41 +40,41 @@ class DataStore(webapp2.RequestHandler):
             watertime=self.request.get('WaterTime')
         if not optionwater:
             optionwater=False
+            watertime=None
         optionshave = self.request.get('ShaveCheckBox')
         if optionshave:
             optionshave=True
             shavetime=self.request.get('ShaveTime')
         if not optionshave:
             optionshave=False
+            shavetime=None
         optionsleep = self.request.get('SleepCheckBox')
         if optionsleep:
             optionsleep=True
             sleeptime=self.request.get('SleepTime')
         if not optionsleep:
             optionsleep=False
+            sleeptime=None
         username=self.request.get("user-name")
 
         variable_dict =  {
             "optionwater": optionwater,
             "optionshave": optionshave,
-<<<<<<< HEAD
-            "optionsleep": optionsleep
-                        }
-        username = ReminderData(
-        optionwater= optionwater,
-        optionshave=optionshave,
-        optionsleep=optionsleep
-        )
-=======
             "optionsleep": optionsleep,
             "watertime": watertime,
             "shavetime": shavetime,
             "sleeptime": sleeptime
             }
-
-        username = ReminderData(optionwater= optionwater,optionshave=optionshave,optionsleep=optionsleep,watertime= watertime,shavetime=shavetime,sleeptime=sleeptime)
->>>>>>> f4078b8ca83ef7266f4e5240a77f2354fd0b1459
+        username = ReminderData(
+        optionwater= optionwater,
+        optionshave=optionshave,
+        optionsleep=optionsleep,
+        watertime= watertime,
+        shavetime=shavetime,
+        sleeptime=sleeptime)
         username.put()
+        Event_template=the_jinja_env.get_template('templates/Event.html')
+        self.response.write(Event_template.render())
 
 
 

@@ -3,159 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <marquee height=50 width=200 align=middle bgcolor=yellow><h3>Your current events</h3></marquee>
+  </head>
+  <body>
+
+    <button onclick="setTimeout(myFunction, 3000);">Run</button>
+    <p id="demo"></p>
+
+
     <script>
-      function startTime()
-      {
-       var today=new Date();
-       var h=today.getHours();
-       var s=today.getSeconds();
-       var m=today.getMinutes();
+    function myFunction() {
+        alert('Hello');
+    }
 
-       m=checkTime(m);
-       s=checkTime(s);
-       document.getElementById('txt').innerHTML=today;
-       t=setTimeout(function(){startTime()},500);
-      }
-      function checkTime(i){
-        if(i<10)
-        {
-          i="0"/i;
-        }
-        return i;
-      }
-
+    var myVar = setInterval(myTimer, 1000);
+    function myTimer() {
+        var d = new Date();
+        document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+    }
     </script>
-    <!-- Read more: https://html.com/tags/comment-tag/#ixzz58Ks74jcB
-    http://code.activestate.com/recipes/578686-analog-clock/ -->
-    <style type="text/css">
-      html, body {
-        background-color: #eee;
-        font-family: tahoma;
-        font-size: 90%;
-        height: 100%;
-        width: 100%;
-      }
-      * {
-        margin: 0;
-        padding: 0;
-      }
-      td {
-        text-align: center;
-      }
-      #box {
-        background-color: #cc0000;
-        color: #fff;
-        font-weight: bold;
-        text-align: center;
-        padding: 3px 0 3px 0;
-      }
-      #container {
-        height: 10%;
-        vertical-align: middle;
-        width: 10%;
-      }
-      #clock {
-        fill: #cc55fa;
-        stroke: #000;
-        stroke-linecap: round;
-      }
-      #surface, #h_pointer {
-        stroke-width: 5px;
-      }
-      #delimiters, #s_pointer {
-        stroke-width: 1px;
-      }
-      #m_pointer {
-        stroke-width: 3px;
-      }
-      #numbers {
-        font-family: sans-serif;
-        font-size: 80%;
-      }
-    </style>
-    <script language="javascript" type="text/javascript">
-      function timerTick() {
-        with (new Date()) {
-          var h, m, s;
-
-          h = 30 * ((getHours() % 12) + getMinutes() / 60);
-          m = 6 * getMinutes();
-          s = 6 * getSeconds();
-
-          document.getElementById('h_pointer').setAttribute('transform', 'rotate(' + h + ', 50, 50)');
-          document.getElementById('m_pointer').setAttribute('transform', 'rotate(' + m + ', 50, 50)');
-          document.getElementById('s_pointer').setAttribute('transform', 'rotate(' + s + ', 50, 50)');
-
-          setTimeout(timerTick, 1000);
-        }
-      }
-    </script>
-
-
-    </head>
-
-  <body onload='timerTick()'>
-    <noscript><div id='box'>Please, enable JavaScript and refresh page.</div></noscript>
-    <table id='container'>
-      <tr>
-        <td>
-          <svg id='clock' viewBox='0 0 100 100' width='200' height='200'>
-            <circle id='surface' cx='50' cy='50' r='45'/>
-            <g id='pointers'>
-              <line id='h_pointer' x1='50' y1='50' x2='50' y2='27' />
-              <line id='m_pointer' x1='50' y1='50' x2='50' y2='17' />
-              <line id='s_pointer' x1='50' y1='50' x2='50' y2='13' />
-            </g>
-            <g id='numbers'>
-              <text x='43' y='18'>12</text>
-              <text x='85' y='54'>3</text>
-              <text x='47' y='91'>6</text>
-              <text x='9' y='54'>9</text>
-            </g>
-          </svg>
-        </td>
-      </tr>
-    </table>
-    <ol>
-    <a href="undefined" class="aw-widget-legal">
-<!--
-By accessing and/or using this code snippet, you agree to AccuWeather’s terms and conditions (in English) which can be found at https://www.accuweather.com/en/free-weather-widgets/terms and AccuWeather’s Privacy Statement (in English) which can be found at https://www.accuweather.com/en/privacy.
--->
-</a><div id="awcc1520442008094" class="aw-widget-current"  data-locationkey="" data-unit="f" data-language="en-us" data-useip="true" data-uid="awcc1520442008094"></div><script type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
-
-    </ol>
-    <!-- stock ticker web  https://www.tradingview.com/widget/advanced-chart/  -->
-    <ol>
-      <!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-  <div id="tradingview_00960"></div>
-  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL</span> <span class="blue-text">chart</span> by TradingView</a></div>
-  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-  <script type="text/javascript">
-  new TradingView.widget(
-  {
-  "width": 300,
-  "height": 200,
-  "symbol": "NASDAQ:AAPL",
-  "interval": "D",
-  "timezone": "Etc/UTC",
-  "theme": "Light",
-  "style": "1",
-  "locale": "en",
-  "toolbar_bg": "#f1f3f6",
-  "enable_publishing": false,
-  "allow_symbol_change": true,
-  "hideideas": true,
-  "container_id": "tradingview_00960"
-}
-  );
-  </script>
-</div>
-<!-- TradingView Widget END -->
-    </ol>
-    <div id="txt"></div>
-      <table border="," bordercolor="blue" bgcolor="yellow">
 
   </body>
 </html>
