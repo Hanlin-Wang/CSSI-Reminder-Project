@@ -75,10 +75,23 @@ class DataStore(webapp2.RequestHandler):
         sleeptime=sleeptime)
         username.put()
         all_data = ReminderData.query().fetch()
-        var_dict = {'data': all_data}
+        # Data_as_json=json.loads(all_data)
+        Data_as_Json=json.dumps(all_data)
+        var_dict = {'data': Data_as_Json}
+
 
         Event_template=the_jinja_env.get_template('templates/Event.html')
         self.response.write(Event_template.render(var_dict))
+
+
+        # self.response.write(Data_as_json)
+        # for results in trivia_as_json:
+        #     for result in trivia_as_json["results"]:
+        #        self.response.write(result["question"])
+        #        self.response.write("<br>")
+        #        self.response.write(result["correct_answer"])
+        #        self.response.write("<br><br>")
+        #     break
 
 
 
