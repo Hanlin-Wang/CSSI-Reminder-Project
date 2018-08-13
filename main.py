@@ -23,6 +23,7 @@ class RemindHandler(webapp2.RequestHandler):
         self.response.write('This is the home page')
     def post(self):
         Home_template=the_jinja_env.get_template('templates/Home.html')
+        self.response.write(Home_template.render())
         optionwater = self.request.get('WaterCheckBox')
 
 class DataStore(webapp2.RequestHandler):
@@ -32,17 +33,24 @@ class DataStore(webapp2.RequestHandler):
 
     def post(self):
         optionwater = self.request.get('WaterCheckBox')
+
         if optionwater:
             optionwater=True
             watertime=self.request.get('WaterTime')
+        if not optionwater:
+            optionwater=False
         optionshave = self.request.get('ShaveCheckBox')
         if optionshave:
             optionshave=True
             shavetime=self.request.get('ShaveTime')
+        if not optionshave:
+            optionshave=False
         optionsleep = self.request.get('SleepCheckBox')
-        if optionsleep3:
+        if optionsleep:
             optionsleep=True
             sleeptime=self.request.get('SleepTime')
+        if not optionsleep:
+            optionsleep=False
         username=self.request.get("user-name")
 
         variable_dict =  {
@@ -50,13 +58,14 @@ class DataStore(webapp2.RequestHandler):
             "optionshave": optionshave,
             "optionsleep": optionsleep
                         }
-        username = ReminderData(optionwater= optionwater, optionshave= optionshave , optionsleep= optionsleep)
+        username = ReminderData(optionwater= optionwater,optionshave=optionshave,optionsleep=optionsleep)
         username.put()
 
 
 app=webapp2.WSGIApplication([
 ('/',UsernameHandler),
-('/main', RemindHandler)
+('/Main',RemindHandler),
+('/Data',DataStore)
 
 
 ],debug=True)
