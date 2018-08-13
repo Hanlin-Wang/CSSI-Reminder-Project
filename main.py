@@ -28,7 +28,8 @@ class RemindHandler(webapp2.RequestHandler):
 
 class DataStore(webapp2.RequestHandler):
     def get(self):
-        self.response.write(optionwater)
+        Event_template=the_jinja_env.get_template('templates/Event.html')
+        self.response.write(Event_template.render())
 
 
     def post(self):
@@ -58,7 +59,11 @@ class DataStore(webapp2.RequestHandler):
             "optionshave": optionshave,
             "optionsleep": optionsleep
                         }
-        username = ReminderData(optionwater= optionwater,optionshave=optionshave,optionsleep=optionsleep)
+        username = ReminderData(
+        optionwater= optionwater,
+        optionshave=optionshave,
+        optionsleep=optionsleep
+        )
         username.put()
 
 
