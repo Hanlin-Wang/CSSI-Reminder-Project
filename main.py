@@ -84,6 +84,8 @@ class DataStore(webapp2.RequestHandler):
 
     def post(self):
         optionwater = self.request.get('WaterCheckBox')
+        Event_template=the_jinja_env.get_template('templates/Event.html')
+        self.response.write(Event_template.render())
 
         if optionwater:
             optionwater=True
@@ -107,14 +109,6 @@ class DataStore(webapp2.RequestHandler):
             sleeptime=None
 
 
-        variable_dict =  {
-            "optionwater": optionwater,
-            "optionshave": optionshave,
-            "optionsleep": optionsleep,
-            "watertime": watertime,
-            "shavetime": shavetime,
-            "sleeptime": sleeptime
-            }
         useroptions_key = Options(optionwater= optionwater,optionshave= optionshave,optionsleep= optionsleep).put()
         usertime_key = Time(watertime = watertime,shavetime = shavetime,sleeptime = sleeptime).put()
 
@@ -142,40 +136,31 @@ class DataStore(webapp2.RequestHandler):
             rdict["times"] = timeDict
             alldata_dict.append(rdict)
 
-            # for option in reminder.options:
-            #     optionObj = option.get()
-            #     optionDict = {}
-            #     optionDict["optionwater"]=optionObj.optionwater
-            #     optionDict["optionshave"]=optionObj.optionshave
-            #     optionDict["optionsleep"]=optionObj.optionsleep
-            #     rdict["options"].append(optionDict)
-            # for time in times.options:
-            #     timeObj = time.get()
-            #     timeDict = {}
-            #     timeDict["watertime"]=timeObj.watertime
-            #     timeDict["shavetime"]=timeObj.shavetime
-            #     timeDict["sleeptime"]=timeObj.sleeptime
-            #     rdict["times"].append(timeDict)
+            # self.response.write(alldata_dict)
+            # self.response.write(type(alldata_dict))
+            Data_as_Json=json.dumps(alldata_dict)
+            # self.response.write(Data_as_Json)
+            # self.response.write(Event_template.render({"test": "testing"}))
+
+            variable_dict =  {
+                "optionwater": optionwater,
+                "optionshave": optionshave,
+                "optionsleep": optionsleep,
+                "watertime": watertime,
+                "shavetime": shavetime,
+                "sleeptime": sleeptime,
+                "data": Data_as_Json
+                }
+
 
         # Data_as_json=json.loads(all_data)
         # def set_default(obj):
         #     if isinstance(obj, set):
         #         return list(obj)
         #     raise TypeError
-
-        # Data_as_Json=json.dumps(all_data, default=set_default)
-        # var_dict = {'data': Data_as_Json}
-        self.response.write(alldata_dict)
-        self.response.write(type(all_data))
-        # # all_data = json.dumps(all_data)
-        # # loaded_data = json.loads(all_data)
-        # # var_dict = {'data': loaded_data}
-        #  #Output 3.5
         #
         #
         #
-        # Event_template=the_jinja_env.get_template('templates/Event.html')
-        # self.response.write(Event_template.render(var_dict))
 
 
         # self.response.write(Data_as_json)
