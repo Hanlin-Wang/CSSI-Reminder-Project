@@ -11,6 +11,5 @@ class Time(ndb.Model):
     sleeptime = ndb.StringProperty(required=False)
 
 class ReminderData(ndb.Model):
-    username= ndb.StringProperty(required=True)
     options = ndb.KeyProperty(Options)
     time =  ndb.KeyProperty(Time)
