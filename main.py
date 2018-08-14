@@ -107,10 +107,30 @@ class DataStore(webapp2.RequestHandler):
         if not optionsleep:
             optionsleep=False
             sleeptime=None
+        if optionshower:
+            optionshower=True
+            showertime=self.request.get('ShowerTime')
+        if not optionshower:
+            optionshower=False
+            showertime=None
+        if optiongym:
+            optiongym=True
+            gymtime=self.request.get('GymTime')
+        if not optiongym:
+            optiongym=False
+            gymtime=None
+        if optioneat:
+            optioneat=True
+            optiontime=self.request.get('EatTime')
+        if not optioneat:
+            optioneat=False
+            gymtime=None
 
 
-        useroptions_key = Options(optionwater= optionwater,optionshave= optionshave,optionsleep= optionsleep).put()
-        usertime_key = Time(watertime = watertime,shavetime = shavetime,sleeptime = sleeptime).put()
+
+
+        useroptions_key = Options(optionwater= optionwater,optionshave= optionshave,optionsleep= optionsleep,optionshower= optionshower,optiongym= optiongym, optioneat=optioneat).put()
+        usertime_key = Time(watertime = watertime,shavetime = shavetime,sleeptime = sleeptime,showertime= showertime, gymtime= gymtime, eattime= eattime).put()
 
         ReminderData(options=useroptions_key ,time=usertime_key).put()
 
@@ -125,6 +145,9 @@ class DataStore(webapp2.RequestHandler):
             optionDict["optionwater"]=options.optionwater
             optionDict["optionshave"]=options.optionshave
             optionDict["optionsleep"]=options.optionsleep
+            optionDict["optionshower"]=options.optionshower
+            optionDict["optiongym"]=options.optiongym
+            optionDict["optioneat"]=options.optioneat
             rdict["options"] = optionDict
 
             # add the times dictionary
@@ -133,6 +156,9 @@ class DataStore(webapp2.RequestHandler):
             timeDict["watertime"]=times.watertime
             timeDict["shavetime"]=times.shavetime
             timeDict["sleeptime"]=times.sleeptime
+            timeDict["showertime"]=time.showertime
+            timeDict["gymtime"]=time.gymtime
+            timeDict["eattime"]=time.eattime
             rdict["times"] = timeDict
             alldata_dict.append(rdict)
 
@@ -146,10 +172,17 @@ class DataStore(webapp2.RequestHandler):
                 "optionwater": optionwater,
                 "optionshave": optionshave,
                 "optionsleep": optionsleep,
+                "optionshower": optionshower,
+                "optiongym": optiongym,
+                "optioneat": optioneat,
                 "watertime": watertime,
                 "shavetime": shavetime,
                 "sleeptime": sleeptime,
-                "data": Data_as_Json
+                "showertime": showertime,
+                "gymtime": gymtime,
+                "eattime": eattime,
+                "username": username
+                "sleeptime": sleeptime
                 }
 
 
