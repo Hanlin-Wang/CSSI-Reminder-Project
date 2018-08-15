@@ -14,11 +14,16 @@ loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
 extensions=['jinja2.ext.autoescape'],
 autoescape=True)
 
+# decorator = appengine.OAuth2DecoratorFromClientSecrets(
+#    'client_secrets.json',
+#    scope='https://www.googleapis.com/auth/calendar')
+
 class CssiUser(ndb.Model):
   first_name = ndb.StringProperty()
   last_name = ndb.StringProperty()
 
 class UsernameHandler(webapp2.RequestHandler):
+    # @decorator.oauth_required
     def get(self):
         user = users.get_current_user()
         # If the user is logged in...
@@ -107,24 +112,27 @@ class DataStore(webapp2.RequestHandler):
         if not optionsleep:
             optionsleep=False
             sleeptime=None
+        optionshower = self.request.get('ShowerCheckBox')
         if optionshower:
             optionshower=True
             showertime=self.request.get('ShowerTime')
         if not optionshower:
             optionshower=False
             showertime=None
+        optiongym = self.request.get('GymCheckBox')
         if optiongym:
             optiongym=True
             gymtime=self.request.get('GymTime')
         if not optiongym:
             optiongym=False
             gymtime=None
+        optioneat = self.request.get('EatCheckBox')
         if optioneat:
             optioneat=True
-            optiontime=self.request.get('EatTime')
+            eattime=self.request.get('EatTime')
         if not optioneat:
             optioneat=False
-            gymtime=None
+            eattime=None
 
 
 
@@ -156,9 +164,9 @@ class DataStore(webapp2.RequestHandler):
             timeDict["watertime"]=times.watertime
             timeDict["shavetime"]=times.shavetime
             timeDict["sleeptime"]=times.sleeptime
-            timeDict["showertime"]=time.showertime
-            timeDict["gymtime"]=time.gymtime
-            timeDict["eattime"]=time.eattime
+            timeDict["showertime"]=times.showertime
+            timeDict["gymtime"]=times.gymtime
+            timeDict["eattime"]=times.eattime
             rdict["times"] = timeDict
             alldata_dict.append(rdict)
 
@@ -181,9 +189,16 @@ class DataStore(webapp2.RequestHandler):
                 "showertime": showertime,
                 "gymtime": gymtime,
                 "eattime": eattime,
-                "username": username
                 "sleeptime": sleeptime
                 }
+
+            # jQuery.ajax({
+            #
+            #   url:"Data"
+            # }).done(function(response){
+            #   alert(response);
+            # });
+
 
 
         # Data_as_json=json.loads(all_data)

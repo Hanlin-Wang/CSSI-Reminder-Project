@@ -8,10 +8,23 @@
 
     <button onclick="setTimeout(myFunction, 3000);">Run</button>
     <p id="demo"></p>
+
+    <script type="text/javascript">
+            "https://code.jquery.com/jquery-3.3.1.min.js"
+    </script>
+
     <script>
-      var foo= {{data}};
-      console.log(foo);
-      // console.log("ugh this sucks");
+    <button onclick="timedText()">Display timed text</button>
+    <input type="text" id="txt">
+
+    <script>
+    function timedText() {
+      var x = document.getElementById("txt");
+      setTimeout(function(){ x.value="2 seconds" }, 2000);
+      setTimeout(function(){ x.value="4 seconds" }, 4000);
+      setTimeout(function(){ x.value="6 seconds" }, 6000);
+    }
+</script>
 
     </script>
 
